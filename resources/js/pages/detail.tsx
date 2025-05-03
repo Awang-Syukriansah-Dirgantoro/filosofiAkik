@@ -56,7 +56,7 @@ interface PageProps {
     };
 }
 
-const APP_URL = 'http://127.0.0.1:8000';
+const APP_URL = window.APP_URL || "127.0.0.1:8000";
 
 export default function DetailPage(props: PageProps) {
     const { products, categories, info } = props;
@@ -64,8 +64,8 @@ export default function DetailPage(props: PageProps) {
     const [showGallery, setShowGallery] = useState(false);
     const [carouselIndex, setCarouselIndex] = useState(0);
 
-    // console.log(process.env);
-    
+    console.log(APP_URL);
+
 
     const handlePrev = () => {
         setCarouselIndex((prev) => (prev === 0 ? (products.image.length - 1) : prev - 1));
@@ -93,134 +93,144 @@ export default function DetailPage(props: PageProps) {
                         </button>
                     </div>
                     <div className='flex w-full justify-end'>
-                        <button className='rounded-full bg-[#FFD600] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'>
+                        {/* <button className='rounded-full bg-[#FFD600] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'>
                             Buy Now
-                        </button>
+                        </button> */}
+                        <a
+                            href={`https://wa.me/${info?.phone_number?.replace(/\D/g, '')}?text=${encodeURIComponent(
+                                `Hi, I want to buy this product: ${products.nama}`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className='rounded-full bg-[#FFD600] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'
+                        >
+                            Buy Now
+                        </a>
                     </div>
                 </div>
                 {/* Initial layout */}
                 <div className='hidden md:block'>
-                <div className='grid grid-cols-12 gap-3 h-[400px]'>
-                    <div className='col-span-6 relative h-[400px] z-10'>
-                        <div className={`absolute inset-0 transition-all duration-500 ease-in-out 
+                    <div className='grid grid-cols-12 gap-3 h-[400px]'>
+                        <div className='col-span-6 relative h-[400px] z-10'>
+                            <div className={`absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                            <img
-                                src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[0]}` : '/default-image.jpg'}
-                                alt={products.nama || 'Product'}
-                                className='rounded-md row-start-1 w-full h-full object-cover shadow-[0_2px_16px_rgba(0,0,0,0.2)]'
-                            />
-                        </div>
-                        <div className={`flex justify-center absolute inset-0 transition-all duration-500 ease-in-out 
+                                <img
+                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[0]}` : '/default-image.jpg'}
+                                    alt={products.nama || 'Product'}
+                                    className='rounded-md row-start-1 w-full h-full object-cover shadow-[0_2px_16px_rgba(0,0,0,0.2)]'
+                                />
+                            </div>
+                            <div className={`flex justify-center absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                            <img
-                                src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : '/default-image.jpg'}
-                                alt={products.nama || 'Product'}
-                                className='absolute rounded-md w-full h-full object-cover'
-                            />
-                            {products.image && products.image.length > 1 && (
-                                <>
-                                    <button
-                                        onClick={handlePrev}
-                                        className='absolute rounded-full w-[40px] bg-black/[0.4] z-[2] h-[40px] justify-center flex place-items-center cursor-pointer text-[24px] left-[16px] self-center'
-                                        aria-label="Prev"
-                                    >
-                                        <FaArrowLeft />
-                                    </button>
-                                    <button
-                                        onClick={handleNext}
-                                        className='absolute rounded-full w-[40px] bg-black/[0.4] z-[2] h-[40px] justify-center flex place-items-center cursor-pointer text-[24px] right-[16px] self-center'
+                                <img
+                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : '/default-image.jpg'}
+                                    alt={products.nama || 'Product'}
+                                    className='absolute rounded-md w-full h-full object-cover'
+                                />
+                                {products.image && products.image.length > 1 && (
+                                    <>
+                                        <button
+                                            onClick={handlePrev}
+                                            className='absolute rounded-full w-[40px] bg-black/[0.4] z-[2] h-[40px] justify-center flex place-items-center cursor-pointer text-[24px] left-[16px] self-center'
+                                            aria-label="Prev"
+                                        >
+                                            <FaArrowLeft />
+                                        </button>
+                                        <button
+                                            onClick={handleNext}
+                                            className='absolute rounded-full w-[40px] bg-black/[0.4] z-[2] h-[40px] justify-center flex place-items-center cursor-pointer text-[24px] right-[16px] self-center'
+                                            aria-label="Next"
+                                        >
+                                            <FaArrowRight />
+                                        </button>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className='col-span-6 relative z-0'>
+                            <div className={`grid grid-cols-6 grid-rows-2 p-0 m-0 justify-center gap-3 h-[400px] absolute inset-0 transition-all duration-500 ease-in-out 
+                                ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                                <div className='col-span-5 justify-center'>
+                                    <img
+                                        src={products.image && products.image.length > 1 ? `${APP_URL}/storage/${products.image[1]}` : '/default-image.jpg'}
+                                        alt="thumb-1"
+                                        className='w-full h-full object-cover rounded-md'
+                                    />
+                                </div>
+                                <div className={`row-span-2 flex content-center justify-center transition-all duration-500 ease-in-out ${showDetail ? 'opacity-0 -translate-x-full pointer-events-none' : 'opacity-100 translate-x-0'}`}>
+                                    <button className='flex place-items-center place-self-center bg-[#FFD600] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer'
+                                        onClick={() => setShowDetail(true)}
                                         aria-label="Next"
                                     >
                                         <FaArrowRight />
                                     </button>
-                                </>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className='col-span-6 relative z-0'>
-                        <div className={`grid grid-cols-6 grid-rows-2 p-0 m-0 justify-center gap-3 h-[400px] absolute inset-0 transition-all duration-500 ease-in-out 
-                                ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                            <div className='col-span-5 justify-center'>
-                                <img
-                                    src={products.image && products.image.length > 1 ? `${APP_URL}/storage/${products.image[1]}` : '/default-image.jpg'}
-                                    alt="thumb-1"
-                                    className='w-full h-full object-cover rounded-md'
-                                />
+                                </div>
+                                <div className='col-span-5 justify-center'>
+                                    <div className='relative w-full h-full'>
+                                        <img
+                                            src={products.image && products.image.length > 2 ? `${APP_URL}/storage/${products.image[2]}` : '/default-image.jpg'}
+                                            alt="thumb-2"
+                                            className='w-full h-full object-cover rounded-md brightness-75'
+                                        />
+                                        <div className='absolute top-0 left-0 w-full h-full flex place-items-center justify-center font-[700] text-[24px] rounded-md cursor-pointer'
+                                            onClick={() => setShowGallery(true)}
+                                        >
+                                            + See More
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className={`row-span-2 flex content-center justify-center transition-all duration-500 ease-in-out ${showDetail ? 'opacity-0 -translate-x-full pointer-events-none' : 'opacity-100 translate-x-0'}`}>
-                                <button className='flex place-items-center place-self-center bg-[#FFD600] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer'
-                                    onClick={() => setShowDetail(true)}
-                                    aria-label="Next"
-                                >
-                                    <FaArrowRight />
-                                </button>
-                            </div>
-                            <div className='col-span-5 justify-center'>
-                                <div className='relative w-full h-full'>
-                                    <img
-                                        src={products.image && products.image.length > 2 ? `${APP_URL}/storage/${products.image[2]}` : '/default-image.jpg'}
-                                        alt="thumb-2"
-                                        className='w-full h-full object-cover rounded-md brightness-75'
-                                    />
-                                    <div className='absolute top-0 left-0 w-full h-full flex place-items-center justify-center font-[700] text-[24px] rounded-md cursor-pointer'
-                                        onClick={() => setShowGallery(true)}
+                            <div className={`grid grid-cols-6 p-0 m-0 flex justify-center gap-3 h-[400px] absolute inset-0 transition-all duration-500 ease-in-out 
+                                ${showDetail ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'}`}>
+                                <div className='flex content-center justify-center'>
+                                    <button
+                                        onClick={() => {
+                                            setShowDetail(false)
+                                            setCarouselIndex(0)
+                                        }}
+                                        className='flex place-items-center place-self-center bg-[#FFD600] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer font-bold'
+                                        aria-label="Close"
                                     >
-                                        + See More
+                                        ×
+                                    </button>
+                                </div>
+                                <div className='relative col-span-5'>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                                        {products.categories.map((tag) => (
+                                            <span
+                                                key={tag.name}
+                                                style={{
+                                                    background: '#FFD600',
+                                                    color: '#222',
+                                                    borderRadius: 8,
+                                                    padding: '2px 12px',
+                                                    fontSize: 14,
+                                                    fontWeight: 600,
+                                                }}
+                                            >
+                                                {tag.name}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <h1 style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
+                                    <div style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
+                                        Rp {products.price.toLocaleString('id-ID')}
+                                    </div>
+                                    <div style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
+                                        <div><b>No / Date</b> : {products.number} / {products.date}</div>
+                                        <div><b>Weight</b> : {products.weight}</div>
+                                        <div><b>Dim (Mm)</b> : {products.diameter}</div>
+                                        <div><b>Cut</b> : {products.cut}</div>
+                                        <div><b>Shape</b> : {products.shape}</div>
+                                        <div><b>Colour</b> : {products.color}</div>
+                                        <div><b>Comments</b> : {products.comments}</div>
+                                        <div><b>Origin</b> : {products.origin}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className={`grid grid-cols-6 p-0 m-0 flex justify-center gap-3 h-[400px] absolute inset-0 transition-all duration-500 ease-in-out 
-                                ${showDetail ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'}`}>
-                            <div className='flex content-center justify-center'>
-                                <button
-                                    onClick={() => {
-                                        setShowDetail(false)
-                                        setCarouselIndex(0)
-                                    }}
-                                    className='flex place-items-center place-self-center bg-[#FFD600] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer font-bold'
-                                    aria-label="Close"
-                                >
-                                    ×
-                                </button>
-                            </div>
-                            <div className='relative col-span-5'>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                                    {products.categories.map((tag) => (
-                                        <span
-                                            key={tag.name}
-                                            style={{
-                                                background: '#FFD600',
-                                                color: '#222',
-                                                borderRadius: 8,
-                                                padding: '2px 12px',
-                                                fontSize: 14,
-                                                fontWeight: 600,
-                                            }}
-                                        >
-                                            {tag.name}
-                                        </span>
-                                    ))}
-                                </div>
-                                <h1 style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
-                                <div style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
-                                    Rp {products.price.toLocaleString('id-ID')}
-                                </div>
-                                <div style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
-                                    <div><b>No / Date</b> : {products.number} / {products.date}</div>
-                                    <div><b>Weight</b> : {products.weight}</div>
-                                    <div><b>Dim (Mm)</b> : {products.diameter}</div>
-                                    <div><b>Cut</b> : {products.cut}</div>
-                                    <div><b>Shape</b> : {products.shape}</div>
-                                    <div><b>Colour</b> : {products.color}</div>
-                                    <div><b>Comments</b> : {products.comments}</div>
-                                    <div><b>Origin</b> : {products.origin}</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
                 </div>
 
                 <div className='md:hidden block flex flex-col gap-3'>
@@ -290,7 +300,7 @@ export default function DetailPage(props: PageProps) {
                         {products.description}
                     </div>
                     <div style={{ display: 'flex', gap: 16 }}>
-                        <button
+                        {/* <button
                             style={{
                                 padding: '10px 28px',
                                 fontSize: 16,
@@ -303,8 +313,28 @@ export default function DetailPage(props: PageProps) {
                             }}
                         >
                             Buy Now
-                        </button>
-                        <button
+                        </button> */}
+                        <a
+                            href={`https://wa.me/${info?.phone_number?.replace(/\D/g, '')}?text=${encodeURIComponent(
+                                `Hi, I want to buy this product: ${products.nama}`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                padding: '10px 28px',
+                                fontSize: 16,
+                                borderRadius: 8,
+                                border: 'none',
+                                background: '#FFD600',
+                                color: '#222',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                            }}
+                        // className='rounded-full bg-[#FFD600] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'
+                        >
+                            Buy Now
+                        </a>
+                        {/* <button
                             style={{
                                 padding: '10px 28px',
                                 fontSize: 16,
@@ -317,7 +347,27 @@ export default function DetailPage(props: PageProps) {
                             }}
                         >
                             Ask More
-                        </button>
+                        </button> */}
+                        <a
+                            href={`https://wa.me/${info?.phone_number?.replace(/\D/g, '')}?text=${encodeURIComponent(
+                                `Hi, I’d like to ask more about: ${products.nama}`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                padding: '10px 28px',
+                                fontSize: 16,
+                                borderRadius: 8,
+                                border: '1px solid #FFD600',
+                                background: '#222',
+                                color: '#FFD600',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                            }}
+                            // className='mt-2 rounded-full bg-green-500 text-white font-[700] w-fit cursor-pointer py-[5px] px-[15px]'
+                        >
+                            Ask More
+                        </a>
                     </div>
                 </div>
                 {/* Modal galeri gambar hanya jika showGallery */}
