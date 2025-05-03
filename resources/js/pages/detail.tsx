@@ -56,13 +56,16 @@ interface PageProps {
     };
 }
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://127.0.0.1:8000';
+const APP_URL = 'http://127.0.0.1:8000';
 
 export default function DetailPage(props: PageProps) {
     const { products, categories, info } = props;
     const [showDetail, setShowDetail] = useState(false);
     const [showGallery, setShowGallery] = useState(false);
     const [carouselIndex, setCarouselIndex] = useState(0);
+
+    // console.log(process.env);
+    
 
     const handlePrev = () => {
         setCarouselIndex((prev) => (prev === 0 ? (products.image.length - 1) : prev - 1));

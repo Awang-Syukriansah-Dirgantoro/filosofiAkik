@@ -37,7 +37,7 @@ export default function AboutPage(props: AboutPageProps) {
                     <AppLogoIcon className='h-full w-full object-contain' />
                 </div>
                 <h1 className="text-2xl font-bold text-yellow-300 mb-2">About</h1>
-                <div className="text-lg text-white mb-4 whitespace-pre-line">{info.about}</div>
+                <div className="text-lg text-white mb-4 whitespace-pre-line">{info?.about}</div>
             </div>
         </AppLayout>
     );
