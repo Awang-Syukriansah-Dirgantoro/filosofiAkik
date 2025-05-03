@@ -64,7 +64,7 @@ export default function DetailPage(props: PageProps) {
     const [showGallery, setShowGallery] = useState(false);
     const [carouselIndex, setCarouselIndex] = useState(0);
 
-    console.log(APP_URL);
+    // console.log(APP_URL);
 
 
     const handlePrev = () => {
@@ -115,17 +115,17 @@ export default function DetailPage(props: PageProps) {
                             <div className={`absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                                 <img
-                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[0]}` : '/default-image.jpg'}
+                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[0]}` : `${APP_URL}/storage/placeholder.png`}
                                     alt={products.nama || 'Product'}
-                                    className='rounded-md row-start-1 w-full h-full object-cover shadow-[0_2px_16px_rgba(0,0,0,0.2)]'
+                                    className={`rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
                                 />
                             </div>
                             <div className={`flex justify-center absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                                 <img
-                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : '/default-image.jpg'}
+                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
                                     alt={products.nama || 'Product'}
-                                    className='absolute rounded-md w-full h-full object-cover'
+                                    className={`absolute rounded-md w-full h-full ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
                                 />
                                 {products.image && products.image.length > 1 && (
                                     <>
@@ -153,9 +153,9 @@ export default function DetailPage(props: PageProps) {
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                                 <div className='col-span-5 justify-center'>
                                     <img
-                                        src={products.image && products.image.length > 1 ? `${APP_URL}/storage/${products.image[1]}` : '/default-image.jpg'}
+                                        src={products.image && products.image.length > 1 ? `${APP_URL}/storage/${products.image[1]}` : `${APP_URL}/storage/placeholder.png`}
                                         alt="thumb-1"
-                                        className='w-full h-full object-cover rounded-md'
+                                        className={`w-full h-full rounded-md ${products.image && products.image.length > 1 ? 'object-cover' : "object-contain"}`}
                                     />
                                 </div>
                                 <div className={`row-span-2 flex content-center justify-center transition-all duration-500 ease-in-out ${showDetail ? 'opacity-0 -translate-x-full pointer-events-none' : 'opacity-100 translate-x-0'}`}>
@@ -169,9 +169,9 @@ export default function DetailPage(props: PageProps) {
                                 <div className='col-span-5 justify-center'>
                                     <div className='relative w-full h-full'>
                                         <img
-                                            src={products.image && products.image.length > 2 ? `${APP_URL}/storage/${products.image[2]}` : '/default-image.jpg'}
+                                            src={products.image && products.image.length > 2 ? `${APP_URL}/storage/${products.image[2]}` : `${APP_URL}/storage/placeholder.png`}
                                             alt="thumb-2"
-                                            className='w-full h-full object-cover rounded-md brightness-75'
+                                            className={`w-full h-full rounded-md brightness-75 ${products.image && products.image.length > 2 ? 'object-cover' : "object-contain"}`}
                                         />
                                         <div className='absolute top-0 left-0 w-full h-full flex place-items-center justify-center font-[700] text-[24px] rounded-md cursor-pointer'
                                             onClick={() => setShowGallery(true)}
@@ -236,9 +236,9 @@ export default function DetailPage(props: PageProps) {
                 <div className='md:hidden block flex flex-col gap-3'>
                     <div className='relative flex h-[400px]'>
                         <img
-                            src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : '/default-image.jpg'}
+                            src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
                             alt={products.nama || 'Product'}
-                            className='absolute rounded-md w-full h-full object-cover'
+                            className={`absolute rounded-md w-full h-full ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
                         />
                         {products.image && products.image.length > 1 && (
                             <>
@@ -435,7 +435,7 @@ export default function DetailPage(props: PageProps) {
                                     />
                                 ))
                             ) : (
-                                <img src="/default-image.jpg" alt="default" style={{ width: '100%', height: 220, objectFit: 'contain', background: '#111', borderRadius: 16 }} />
+                                <img src={`${APP_URL}/storage/placeholder.png`} alt="default" style={{ width: '100%', height: 220, objectFit: 'contain', background: '#111', borderRadius: 16 }} />
                             )}
                         </div>
                     </div>

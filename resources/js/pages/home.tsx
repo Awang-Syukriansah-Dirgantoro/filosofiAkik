@@ -81,7 +81,7 @@ export default function Home(props: PageProps) {
                                 <AkikCard
                                     key={product.id}
                                     id={product.id}
-                                    image={product.image && product.image.length > 0 ? product.image[0] : '/akik-sample.jpg'}
+                                    image={product.image && product.image.length > 0 ? product.image[0] : 'placeholder.png'}
                                     title={product.nama}
                                     subtitle={product.alias}
                                     price={product.price}
