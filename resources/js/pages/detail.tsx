@@ -56,6 +56,8 @@ interface PageProps {
     };
 }
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://127.0.0.1:8000';
+
 export default function DetailPage(props: PageProps) {
     const { products, categories, info } = props;
     const [showDetail, setShowDetail] = useState(false);
@@ -100,7 +102,7 @@ export default function DetailPage(props: PageProps) {
                         <div className={`absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                             <img
-                                src={products.image && products.image.length > 0 ? `http://127.0.0.1:8000/storage/${products.image[0]}` : '/default-image.jpg'}
+                                src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[0]}` : '/default-image.jpg'}
                                 alt={products.nama || 'Product'}
                                 className='rounded-md row-start-1 w-full h-full object-cover shadow-[0_2px_16px_rgba(0,0,0,0.2)]'
                             />
@@ -108,7 +110,7 @@ export default function DetailPage(props: PageProps) {
                         <div className={`flex justify-center absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                             <img
-                                src={products.image && products.image.length > 0 ? `http://127.0.0.1:8000/storage/${products.image[carouselIndex]}` : '/default-image.jpg'}
+                                src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : '/default-image.jpg'}
                                 alt={products.nama || 'Product'}
                                 className='absolute rounded-md w-full h-full object-cover'
                             />
@@ -138,7 +140,7 @@ export default function DetailPage(props: PageProps) {
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                             <div className='col-span-5 justify-center'>
                                 <img
-                                    src={products.image && products.image.length > 1 ? `http://127.0.0.1:8000/storage/${products.image[1]}` : '/default-image.jpg'}
+                                    src={products.image && products.image.length > 1 ? `${APP_URL}/storage/${products.image[1]}` : '/default-image.jpg'}
                                     alt="thumb-1"
                                     className='w-full h-full object-cover rounded-md'
                                 />
@@ -154,7 +156,7 @@ export default function DetailPage(props: PageProps) {
                             <div className='col-span-5 justify-center'>
                                 <div className='relative w-full h-full'>
                                     <img
-                                        src={products.image && products.image.length > 2 ? `http://127.0.0.1:8000/storage/${products.image[2]}` : '/default-image.jpg'}
+                                        src={products.image && products.image.length > 2 ? `${APP_URL}/storage/${products.image[2]}` : '/default-image.jpg'}
                                         alt="thumb-2"
                                         className='w-full h-full object-cover rounded-md brightness-75'
                                     />
@@ -221,7 +223,7 @@ export default function DetailPage(props: PageProps) {
                 <div className='md:hidden block flex flex-col gap-3'>
                     <div className='relative flex h-[400px]'>
                         <img
-                            src={products.image && products.image.length > 0 ? `http://127.0.0.1:8000/storage/${products.image[carouselIndex]}` : '/default-image.jpg'}
+                            src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : '/default-image.jpg'}
                             alt={products.nama || 'Product'}
                             className='absolute rounded-md w-full h-full object-cover'
                         />
@@ -367,7 +369,7 @@ export default function DetailPage(props: PageProps) {
                                 products.image.map((img, idx) => (
                                     <img
                                         key={idx}
-                                        src={`http://127.0.0.1:8000/storage/${img}`}
+                                        src={`${APP_URL}/storage/${img}`}
                                         alt={`gallery-${idx}`}
                                         style={{
                                             width: '100%',

@@ -30,7 +30,7 @@ export default function AppHeroMain(props: PageProps) {
   return (
     <section className="w-full text-white flex flex-col items-center py-12">
       <h1 className="text-4xl md:text-5xl font-outfit font-bold text-center mb-2">
-        {info.tag_line ? info.tag_line : "IL Meglio Del Meglio Piu Uno"}
+        {info?.tag_line ? info.tag_line : "IL Meglio Del Meglio Piu Uno"}
       </h1>
       {/* {info.sub_tag_line && (
         <p className="text-xl md:text-2xl font-medium text-center mb-2 text-yellow-200">
@@ -38,7 +38,7 @@ export default function AppHeroMain(props: PageProps) {
         </p>
       )} */}
       <p className="text-lg md:text-xl font-semibold text-center mb-4">
-        {info.sub_tag_line ? info.sub_tag_line : "“Yang Terbaik Dari Yang Terbaik Ditambah Satu”"}
+        {info?.sub_tag_line ? info.sub_tag_line : "“Yang Terbaik Dari Yang Terbaik Ditambah Satu”"}
       </p>
       <div className="text-center text-yellow-100 text-lg mb-8">
         {categories.map((cat, idx) => (
