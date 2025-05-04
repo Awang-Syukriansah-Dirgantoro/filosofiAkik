@@ -66,6 +66,13 @@ export default function DetailPage(props: PageProps) {
 
     // console.log(APP_URL);
 
+    const formattedDate = products.date ? new Date(products.date).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+        })
+        : '';
+
 
     const handlePrev = () => {
         setCarouselIndex((prev) => (prev === 0 ? (products.image.length - 1) : prev - 1));
@@ -218,7 +225,7 @@ export default function DetailPage(props: PageProps) {
                                         Rp {products.price.toLocaleString('id-ID')}
                                     </div>
                                     <div style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
-                                        <div><b>No / Date</b> : {products.number} / {products.date}</div>
+                                        <div><b>No / Date</b> : {products.number} / {formattedDate}</div>
                                         <div><b>Weight</b> : {products.weight}</div>
                                         <div><b>Dim (Mm)</b> : {products.diameter}</div>
                                         <div><b>Cut</b> : {products.cut}</div>
@@ -364,7 +371,7 @@ export default function DetailPage(props: PageProps) {
                                 fontWeight: 700,
                                 cursor: 'pointer',
                             }}
-                            // className='mt-2 rounded-full bg-green-500 text-white font-[700] w-fit cursor-pointer py-[5px] px-[15px]'
+                        // className='mt-2 rounded-full bg-green-500 text-white font-[700] w-fit cursor-pointer py-[5px] px-[15px]'
                         >
                             Ask More
                         </a>
