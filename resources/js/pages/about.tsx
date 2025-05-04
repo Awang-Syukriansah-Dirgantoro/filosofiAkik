@@ -32,12 +32,12 @@ export default function AboutPage(props: AboutPageProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs} info={info} categories={categories}>
             <Head title="About - Filosofi Akik" />
-            <div className="flex flex-col gap-5 md:px-[200px] mx-3">
+            <div className="flex flex-col gap-5 md:px-[200px] mx-3 bg-[#0C0C0C]">
                 <div className='h-[300px] w-full flex place-items-center'>
                     <AppLogoIcon className='h-full w-full object-contain' />
                 </div>
-                <h1 className="text-2xl font-bold text-yellow-300 mb-2">About</h1>
-                <div className="text-lg text-white mb-4 whitespace-pre-line">{info?.about}</div>
+                <h1 className="text-2xl font-bold text-yellow-300 mb-2 font-['Outfit']">About</h1>
+                <div className="text-lg text-white mb-4 whitespace-pre-line font-['Roboto']">{info?.about}</div>
             </div>
         </AppLayout>
     );

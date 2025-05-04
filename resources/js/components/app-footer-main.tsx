@@ -19,7 +19,7 @@ interface FooterProps {
 export default function AppFooterMain(props: FooterProps) {
     const { info } = props;
     return (
-        <footer className="mt-auto bg-[#0C0C0C] border-t-2 border-yellow-200 text-white py-8 px-4">
+        <footer className="mt-auto bg-[#0C0C0C] border-t-2 border-[#F6C44B] text-white py-8 px-4">
             <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
                 {/* Logo */}
                 <div className="flex flex-col items-center md:items-start">

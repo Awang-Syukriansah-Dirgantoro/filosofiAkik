@@ -20,7 +20,7 @@ export default function CategoryList({ categories }: CategoryListProps) {
   };
 
   return (
-    <div className="bg-white text-black font-outfit rounded-xl p-4 shadow min-h-[500px]">
+    <div className="bg-[#F6C44B] text-black font-['Outfit'] rounded-xl p-4 min-h-[500px]">
       <h2 className="font-bold text-lg mb-4">Kategori</h2>
       <ul className="space-y-2">
         <li className="hover:text-blue-600 cursor-pointer font-semibold" onClick={handleAllCategory}>All Category</li>

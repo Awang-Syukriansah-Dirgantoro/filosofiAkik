@@ -35,5 +35,12 @@ class EditProduct extends EditRecord
                 Storage::disk('public')->delete($image);
             }
         }
+        
+        // return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    protected function getRedirectUrl(): ?string
+    {
+        return static::getResource()::getUrl('index');
     }
 }

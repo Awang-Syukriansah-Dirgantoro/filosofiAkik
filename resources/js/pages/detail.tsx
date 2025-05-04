@@ -88,7 +88,7 @@ export default function DetailPage(props: PageProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs} info={info} categories={categories}>
             <Head title="Detail - Filosofi Akik Rumahnya Batu Akik" />
-            <div className='align-center justify-center relative flex flex-col m-3'
+            <div className='align-center justify-center relative flex flex-col m-3 bg-[#0C0C0C]'
             >
                 <div className='grid grid-cols-2 mb-2'>
                     <div>
@@ -100,7 +100,7 @@ export default function DetailPage(props: PageProps) {
                         </button>
                     </div>
                     <div className='flex w-full justify-end'>
-                        {/* <button className='rounded-full bg-[#FFD600] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'>
+                        {/* <button className='rounded-full bg-[#F6C44B] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'>
                             Buy Now
                         </button> */}
                         <a
@@ -109,7 +109,7 @@ export default function DetailPage(props: PageProps) {
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className='rounded-full bg-[#FFD600] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'
+                            className='rounded-full bg-[#F6C44B] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'
                         >
                             Buy Now
                         </a>
@@ -166,7 +166,7 @@ export default function DetailPage(props: PageProps) {
                                     />
                                 </div>
                                 <div className={`row-span-2 flex content-center justify-center transition-all duration-500 ease-in-out ${showDetail ? 'opacity-0 -translate-x-full pointer-events-none' : 'opacity-100 translate-x-0'}`}>
-                                    <button className='flex place-items-center place-self-center bg-[#FFD600] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer'
+                                    <button className='flex place-items-center place-self-center bg-[#F6C44B] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer'
                                         onClick={() => setShowDetail(true)}
                                         aria-label="Next"
                                     >
@@ -196,7 +196,7 @@ export default function DetailPage(props: PageProps) {
                                             setShowDetail(false)
                                             setCarouselIndex(0)
                                         }}
-                                        className='flex place-items-center place-self-center bg-[#FFD600] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer font-bold'
+                                        className='flex place-items-center place-self-center bg-[#F6C44B] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer font-bold'
                                         aria-label="Close"
                                     >
                                         ×
@@ -208,7 +208,7 @@ export default function DetailPage(props: PageProps) {
                                             <span
                                                 key={tag.name}
                                                 style={{
-                                                    background: '#FFD600',
+                                                    background: '#F6C44B',
                                                     color: '#222',
                                                     borderRadius: 8,
                                                     padding: '2px 12px',
@@ -220,11 +220,11 @@ export default function DetailPage(props: PageProps) {
                                             </span>
                                         ))}
                                     </div>
-                                    <h1 style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
-                                    <div style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
+                                    <h1 className="font-['Outfit']" style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
+                                    <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
                                         Rp {products.price.toLocaleString('id-ID')}
                                     </div>
-                                    <div style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
+                                    <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
                                         <div><b>No / Date</b> : {products.number} / {formattedDate}</div>
                                         <div><b>Weight</b> : {products.weight}</div>
                                         <div><b>Dim (Mm)</b> : {products.diameter}</div>
@@ -272,7 +272,7 @@ export default function DetailPage(props: PageProps) {
                                 <span
                                     key={tag.name}
                                     style={{
-                                        background: '#FFD600',
+                                        background: '#F6C44B',
                                         color: '#222',
                                         borderRadius: 8,
                                         padding: '2px 12px',
@@ -284,11 +284,11 @@ export default function DetailPage(props: PageProps) {
                                 </span>
                             ))}
                         </div>
-                        <h1 style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
-                        <div style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
+                        <h1 className="font-['Outfit']" style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
+                        <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
                             Rp {products.price.toLocaleString('id-ID')}
                         </div>
-                        <div style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
+                        <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
                             <div><b>No / Date</b> : {products.number} / {products.date}</div>
                             <div><b>Weight</b> : {products.weight}</div>
                             <div><b>Dim (Mm)</b> : {products.diameter}</div>
@@ -302,8 +302,8 @@ export default function DetailPage(props: PageProps) {
                 </div>
 
                 <div className='my-3'>
-                    <div style={{ fontWeight: 700, marginBottom: 4 }}>Filosofi</div>
-                    <div style={{ fontSize: 15, marginBottom: 24 }}>
+                    <div className="font-['Outfit']" style={{ fontWeight: 700, marginBottom: 4 }}>Filosofi</div>
+                    <div className="font-['Roboto']" style={{ fontSize: 15, marginBottom: 24 }}>
                         {products.description}
                     </div>
                     <div style={{ display: 'flex', gap: 16 }}>
@@ -313,7 +313,7 @@ export default function DetailPage(props: PageProps) {
                                 fontSize: 16,
                                 borderRadius: 8,
                                 border: 'none',
-                                background: '#FFD600',
+                                background: '#F6C44B',
                                 color: '#222',
                                 fontWeight: 700,
                                 cursor: 'pointer',
@@ -332,12 +332,12 @@ export default function DetailPage(props: PageProps) {
                                 fontSize: 16,
                                 borderRadius: 8,
                                 border: 'none',
-                                background: '#FFD600',
+                                background: '#F6C44B',
                                 color: '#222',
                                 fontWeight: 700,
                                 cursor: 'pointer',
                             }}
-                        // className='rounded-full bg-[#FFD600] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'
+                        // className='rounded-full bg-[#F6C44B] text-black font-[700] z-10 w-fit cursor-pointer py-[5px] px-[15px]'
                         >
                             Buy Now
                         </a>
@@ -346,9 +346,9 @@ export default function DetailPage(props: PageProps) {
                                 padding: '10px 28px',
                                 fontSize: 16,
                                 borderRadius: 8,
-                                border: '1px solid #FFD600',
+                                border: '1px solid #F6C44B',
                                 background: '#222',
-                                color: '#FFD600',
+                                color: '#F6C44B',
                                 fontWeight: 700,
                                 cursor: 'pointer',
                             }}
@@ -365,9 +365,9 @@ export default function DetailPage(props: PageProps) {
                                 padding: '10px 28px',
                                 fontSize: 16,
                                 borderRadius: 8,
-                                border: '1px solid #FFD600',
+                                border: '1px solid #F6C44B',
                                 background: '#222',
-                                color: '#FFD600',
+                                color: '#F6C44B',
                                 fontWeight: 700,
                                 cursor: 'pointer',
                             }}

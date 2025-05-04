@@ -89,7 +89,7 @@ export function AppHeaderMain({ breadcrumbs = [], categories = [] }: AppHeaderPr
 
     return (
         <>
-            <div className="sticky top-0 z-50 border-sidebar-border/80 border-b bg-[#0C0C0C] drop-shadow-[0_10px_5px_rgba(255,230,86,1)]">
+            <div className="sticky top-0 z-50 border-sidebar-border/80 border-b bg-[#0C0C0C] drop-shadow-[0_5px_5px_rgba(246,196,75,1)]">
                 <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
@@ -119,7 +119,7 @@ export function AppHeaderMain({ breadcrumbs = [], categories = [] }: AppHeaderPr
                                                     'flex items-center space-x-2 font-medium',
                                                 )}>
                                                     Category
-                                                    <svg className="ml-1 w-4 h-4" fill="none" stroke="#FFE656" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                                    <svg className="ml-1 w-4 h-4" fill="none" stroke="#F6C44B" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent>
                                                     <a href="#" onClick={handleAllCategory} className="block px-4 py-2 hover:bg-yellow-100 text-white font-semibold hover:text-black">
@@ -173,8 +173,8 @@ export function AppHeaderMain({ breadcrumbs = [], categories = [] }: AppHeaderPr
                                 className="w-full rounded-full px-6 py-2 text-lg font-semibold focus:outline-none"
                                 style={{ background: '#fff', color: '#222' }}
                             />
-                            <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#181818] rounded-full p-2">
-                                <Search className="text-[#FFE656]" />
+                            <button type="submit" className="absolute right-1 top-1/2 -translate-y-1/2 bg-[#181818] rounded-full p-2">
+                                <Search className="text-[#F6C44B]" />
                             </button>
                         </form>
                     </div>
@@ -220,7 +220,7 @@ export function AppHeaderMain({ breadcrumbs = [], categories = [] }: AppHeaderPr
                                             className={cn(
                                                 navigationMenuTriggerStyle(),
                                                 // page.url === item.href && activeItemStyles,
-                                                'h-9 cursor-pointer px-3 font-semibold text-[#FFE656] font-roboto',
+                                                `h-9 cursor-pointer px-3 font-semibold text-[#F6C44B] font-['Roboto']`,
                                             )}
                                         >
                                             {item.title}
@@ -234,10 +234,10 @@ export function AppHeaderMain({ breadcrumbs = [], categories = [] }: AppHeaderPr
                                 <DropdownMenu>
                                     <DropdownMenuTrigger className={cn(
                                         navigationMenuTriggerStyle(),
-                                        'h-9 cursor-pointer px-3 font-semibold text-[#FFE656] flex items-center',
+                                        `h-9 cursor-pointer px-3 font-semibold text-[#F6C44B] font-['Roboto'] flex items-center`,
                                     )}>
                                         Category
-                                        <svg className="ml-1 w-4 h-4" fill="none" stroke="#FFE656" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                        <svg className="ml-1 w-4 h-4" fill="none" stroke="#F6C44B" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent>
                                         <a href="#" onClick={handleAllCategory} className="block px-4 py-2 hover:bg-yellow-100 text-white font-semibold hover:text-black">
@@ -259,7 +259,7 @@ export function AppHeaderMain({ breadcrumbs = [], categories = [] }: AppHeaderPr
                     </div>
                 </div>
                 {/* Yellow Line */}
-                {/* <div className="h-1 w-full bg-gradient-to-r from-[#FFE656] via-[#FFE656] to-transparent" /> */}
+                {/* <div className="h-1 w-full bg-gradient-to-r from-[#F6C44B] via-[#F6C44B] to-transparent" /> */}
             </div>
             {breadcrumbs.length > 1 && (
                 <div className="border-sidebar-border/70 flex w-full border-b">
