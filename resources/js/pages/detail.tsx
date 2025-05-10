@@ -63,14 +63,15 @@ export default function DetailPage(props: PageProps) {
     const [showDetail, setShowDetail] = useState(false);
     const [showGallery, setShowGallery] = useState(false);
     const [carouselIndex, setCarouselIndex] = useState(0);
+    const [carouselGaleryIndex, setCarouselGaleryIndex] = useState(0);
 
     // console.log(APP_URL);
 
     const formattedDate = products.date ? new Date(products.date).toLocaleDateString('en-GB', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-        })
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+    })
         : '';
 
 
@@ -395,7 +396,10 @@ export default function DetailPage(props: PageProps) {
                     >
                         {/* Tombol Close */}
                         <button
-                            onClick={() => setShowGallery(false)}
+                            onClick={() => {
+                                setShowGallery(false)
+                                setCarouselIndex(0)
+                            }}
                             style={{
                                 position: 'absolute',
                                 top: 32,
@@ -412,7 +416,7 @@ export default function DetailPage(props: PageProps) {
                             ×
                         </button>
                         {/* Grid Gambar */}
-                        <div
+                        {/* <div
                             style={{
                                 background: '#222',
                                 borderRadius: 24,
@@ -443,6 +447,31 @@ export default function DetailPage(props: PageProps) {
                                 ))
                             ) : (
                                 <img src={`${APP_URL}/storage/placeholder.png`} alt="default" style={{ width: '100%', height: 220, objectFit: 'contain', background: '#111', borderRadius: 16 }} />
+                            )}
+                        </div> */}
+                        <div className='relative flex h-[90%] w-[90%]'>
+                            <img
+                                src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
+                                alt={products.nama || 'Product'}
+                                className={`absolute rounded-md w-full h-full object-contain`}
+                            />
+                            {products.image && products.image.length > 1 && (
+                                <>
+                                    <button
+                                        onClick={handlePrev}
+                                        className='absolute rounded-full w-[40px] bg-black/[0.4] z-[2] h-[40px] justify-center flex place-items-center cursor-pointer text-[24px] left-[16px] self-center'
+                                        aria-label="Prev"
+                                    >
+                                        <FaArrowLeft />
+                                    </button>
+                                    <button
+                                        onClick={handleNext}
+                                        className='absolute rounded-full w-[40px] bg-black/[0.4] z-[2] h-[40px] justify-center flex place-items-center cursor-pointer text-[24px] right-[16px] self-center'
+                                        aria-label="Next"
+                                    >
+                                        <FaArrowRight />
+                                    </button>
+                                </>
                             )}
                         </div>
                     </div>
