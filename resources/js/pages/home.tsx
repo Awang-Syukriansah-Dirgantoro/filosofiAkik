@@ -67,7 +67,7 @@ export default function Home(props: PageProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs} categories={categories} info={info}>
             <Head title="Home - Filosofi Akik Rumahnya Batu Akik" />
-            <div className="flex h-fit flex-col gap-3 rounded-xl p-4 bg-[#0C0C0C]">
+            <div className="flex h-fit flex-col gap-3 rounded-xl p-4">
                 <AppHeroMain info={info}/>
                 <div className="grid grid-cols-4 gap-3 mt-4">
                     {/* Kategori di kiri */}

@@ -1,8 +1,21 @@
 import { Search } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { router } from '@inertiajs/react';
 
 const categories = ['Jewellery', 'Collectibles', 'Art Gallery'];
+
+// Sample product images - replace these with your actual image paths
+const productImages = [
+    '/storage/contoh-1.jpeg',
+    '/storage/contoh-2.jpg',
+    '/storage/contoh-3.jpg',
+    '/storage/contoh-4.jpg',
+    '/storage/contoh-5.jpg',
+    '/storage/contoh-6.jpg',
+    '/storage/contoh-7.jpg',
+    '/storage/contoh-8.jpg',
+    '/storage/contoh-9.jpg',
+];
 
 interface PageProps {
     info:{
@@ -19,8 +32,20 @@ interface PageProps {
 
 export default function AppHeroMain(props: PageProps) {
   const [search, setSearch] = useState('');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const { info } = props;
+
+  useEffect(() => {
+    // Auto-rotate images every 5 seconds
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === productImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,6 +85,31 @@ export default function AppHeroMain(props: PageProps) {
             <Search className="text-[#F6C44B]" />
         </button>
       </form>
+
+      {/* Product Carousel */}
+      <div className="w-full max-w-2xl mt-4 h-[40vh] relative overflow-hidden rounded-lg">
+        <div 
+          className="w-full h-full transition-transform duration-700 ease-in-out flex"
+          style={{
+            transform: `translateX(-${(currentImageIndex * 100) / productImages.length}%)`,
+            width: `${productImages.length * 100}%`
+          }}
+        >
+          {productImages.map((image, index) => (
+            <div 
+              key={index}
+              className="w-full h-full flex-shrink-0 relative"
+              style={{ width: `${100 / productImages.length}%` }}
+            >
+              <img
+                src={image}
+                alt={`Product ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
