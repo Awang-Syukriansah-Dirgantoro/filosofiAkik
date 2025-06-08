@@ -54,7 +54,7 @@ export default function AppHeroMain(props: PageProps) {
 
   return (
     <section className="w-full text-white flex flex-col items-center py-12">
-      <h1 className="text-4xl md:text-5xl font-['Outfit'] font-bold text-center mb-2 overflow-wrap-anywhere break-all px-4">
+      <h1 className="text-4xl md:text-5xl font-['Outfit'] font-bold text-center mb-2 break-words px-4">
         {info?.tag_line ? info.tag_line : "IL Meglio Del Meglio Piu Uno"}
       </h1>
       {/* {info.sub_tag_line && (
@@ -62,7 +62,7 @@ export default function AppHeroMain(props: PageProps) {
           {info.sub_tag_line}
         </p>
       )} */}
-      <p className="text-lg md:text-xl font-semibold font-['Outfit'] text-center mb-4 overflow-wrap-anywhere break-all">
+      <p className="text-lg md:text-xl font-semibold font-['Outfit'] text-center mb-4 break-words">
         {info?.sub_tag_line ? info.sub_tag_line : "“Yang Terbaik Dari Yang Terbaik Ditambah Satu”"}
       </p>
       <div className="text-center text-[#F6C44B] font-['Roboto'] text-lg mb-8">

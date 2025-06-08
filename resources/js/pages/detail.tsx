@@ -304,7 +304,7 @@ export default function DetailPage(props: PageProps) {
 
                 <div className='my-3'>
                     <div className="font-['Outfit']" style={{ fontWeight: 700, marginBottom: 4 }}>Filosofi</div>
-                    <div className="font-['Roboto'] overflow-wrap-anywhere break-all" style={{ fontSize: 15, marginBottom: 24 }}>
+                    <div className="font-['Roboto'] break-words" style={{ fontSize: 15, marginBottom: 24 }}>
                         {products.description}
                     </div>
                     <div style={{ display: 'flex', gap: 16 }}>
