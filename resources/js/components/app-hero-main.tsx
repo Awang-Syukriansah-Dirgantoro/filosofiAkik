@@ -54,8 +54,8 @@ export default function AppHeroMain(props: PageProps) {
 
   return (
     <section className="w-full text-white flex flex-col items-center py-12">
-      <h1 className="text-4xl md:text-5xl font-['Outfit'] font-bold text-center mb-2">
-        {info?.tag_line ? info.tag_line : "IL Meglio Del Meglio Piu Uno"}
+      <h1 className="text-4xl md:text-5xl font-['Outfit'] font-bold text-center mb-2 overflow-wrap-anywhere break-all px-4">
+        {info?.tag_line ? info.tag_line : "https://www.instagram.com/filosofiakik/"}
       </h1>
       {/* {info.sub_tag_line && (
         <p className="text-xl md:text-2xl font-medium text-center mb-2 text-yellow-200">
@@ -104,7 +104,7 @@ export default function AppHeroMain(props: PageProps) {
               <img
                 src={image}
                 alt={`Product ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover bg-gray-100"
               />
             </div>
           ))}
