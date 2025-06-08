@@ -43,7 +43,7 @@ export default function AppFooterMain(props: FooterProps) {
                     {info?.instagram && (
                         <div className="flex items-center gap-2">
                             <Instagram className="text-pink-400" size={20} />
-                            <span className="font-semibold overflow-wrap-anywhere break-all">{info?.instagram}</span>
+                            <a href={`https://www.instagram.com/${info?.instagram}`} className="font-semibold overflow-wrap-anywhere break-all">{info?.instagram}</a>
                         </div>
                     )}
                     {info?.facebook && (

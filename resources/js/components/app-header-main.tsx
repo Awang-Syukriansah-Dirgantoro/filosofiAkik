@@ -129,9 +129,9 @@ export function AppHeaderMain({ breadcrumbs = [], categories = [] }: AppHeaderPr
                                                         <div className="px-4 py-2 text-sm text-gray-400">Loading...</div>
                                                     ) : (
                                                         categories.map((cat: any) => (
-                                                            <a key={cat.id} href={`/category/${cat.slug}`} className="block px-4 py-2 hover:bg-yellow-100 text-white font-semibold hover:text-black">
+                                                            <button key={cat.id} onClick={() => handleCategory(cat)} className="block w-full text-left px-4 py-2 hover:bg-yellow-100 text-white font-semibold hover:text-black">
                                                                 {cat.name}
-                                                            </a>
+                                                            </button>
                                                         ))
                                                     )}
                                                 </DropdownMenuContent>

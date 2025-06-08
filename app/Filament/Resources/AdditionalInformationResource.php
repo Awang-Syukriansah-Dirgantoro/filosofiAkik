@@ -34,19 +34,15 @@ class AdditionalInformationResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('facebook')
                     ->label('Facebook')
-                    ->url()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('instagram')
                     ->label('Instagram')
-                    ->url()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('tiktok')
                     ->label('TikTok')
-                    ->url()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('twitter')
                     ->label('Twitter/X')
-                    ->url()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('tag_line')
                     ->label('Tag Line')
