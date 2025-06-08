@@ -62,7 +62,7 @@ export default function AppHeroMain(props: PageProps) {
           {info.sub_tag_line}
         </p>
       )} */}
-      <p className="text-lg md:text-xl font-semibold font-['Outfit'] text-center mb-4">
+      <p className="text-lg md:text-xl font-semibold font-['Outfit'] text-center mb-4 overflow-wrap-anywhere break-all">
         {info?.sub_tag_line ? info.sub_tag_line : "“Yang Terbaik Dari Yang Terbaik Ditambah Satu”"}
       </p>
       <div className="text-center text-[#F6C44B] font-['Roboto'] text-lg mb-8">

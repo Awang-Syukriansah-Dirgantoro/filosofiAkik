@@ -29,7 +29,7 @@ export default function AppFooterMain(props: FooterProps) {
                 {/* Alamat */}
                 <div className="text-center md:text-left max-w-md">
                     <div className="font-bold text-lg mb-2">Alamat Kami</div>
-                    <div className="font-semibold">
+                    <div className="font-semibold overflow-wrap-anywhere break-all">
                         {info?.address}
                     </div>
                 </div>
@@ -38,18 +38,18 @@ export default function AppFooterMain(props: FooterProps) {
                     <div className="font-bold text-lg mb-2">Contact</div>
                     <div className="flex items-center gap-2">
                         <Phone className="text-green-400" size={20} />
-                        <span className="font-semibold">{info?.phone_number}</span>
+                        <span className="font-semibold overflow-wrap-anywhere break-all">{info?.phone_number}</span>
                     </div>
                     {info?.instagram && (
                         <div className="flex items-center gap-2">
                             <Instagram className="text-pink-400" size={20} />
-                            <span className="font-semibold">{info?.instagram}</span>
+                            <span className="font-semibold overflow-wrap-anywhere break-all">{info?.instagram}</span>
                         </div>
                     )}
                     {info?.facebook && (
                         <div className="flex items-center gap-2">
                             <Facebook className="text-blue-500" size={20} />
-                            <span className="font-semibold">{info?.facebook}</span>
+                            <span className="font-semibold overflow-wrap-anywhere break-all">{info?.facebook}</span>
                         </div>
                     )}
                     {/* Tambahkan tiktok, twitter jika ingin */}
