@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('stock')->default(0);
             $table->integer('view')->default(0);
             $table->integer('price');
+            $table->integer('priceUsd');
             $table->boolean('limited')->default(false);
             $table->boolean('negoable')->default(false);
             $table->json('category');

@@ -21,6 +21,7 @@ interface Product {
     stock: number;
     view: number;
     price: number;
+    priceUsd: number;
     limited: boolean;
     negoable: boolean;
     image: string[];
@@ -44,9 +45,12 @@ interface PageProps {
         links: PaginationLink[];
         current_page: number;
         last_page: number;
-        // tambahkan jika butuh
     };
     categories: Category[];
+    carousel: {
+        id: number;
+        path: string;
+    }[];
     info:{
         address?: string;
         phone_number?: string;
@@ -61,14 +65,14 @@ interface PageProps {
 }
 
 export default function Home(props: PageProps) {
-    const { products, categories, info } = props;
-    // console.log(products);
+    const { products, categories, info, carousel } = props;
+    console.log(info);
     
     return (
         <AppLayout breadcrumbs={breadcrumbs} categories={categories} info={info}>
             <Head title="Home - Filosofi Akik Rumahnya Batu Akik" />
             <div className="flex h-fit flex-col gap-3 rounded-xl p-4">
-                <AppHeroMain info={info}/>
+                <AppHeroMain info={info} carousel={carousel}/>
                 <div className="grid grid-cols-4 gap-3 mt-4">
                     {/* Kategori di kiri */}
                     <div className="hidden md:block">
@@ -85,6 +89,7 @@ export default function Home(props: PageProps) {
                                     title={product.nama}
                                     subtitle={product.alias}
                                     price={product.price}
+                                    priceUsd={product.priceUsd}
                                     stock={product.stock}
                                     isLimited={product.limited}
                                     negotiable={product.negoable}

@@ -12,6 +12,7 @@ interface Product {
     stock: number;
     view: number;
     price: number;
+    priceUsd: number;
     limited: boolean;
     negoable: boolean;
     number: string;
@@ -56,7 +57,18 @@ interface PageProps {
     };
 }
 
+declare global {
+    interface Window {
+        APP_URL: string;
+    }
+}
+
 const APP_URL = window.APP_URL || "127.0.0.1:8000";
+
+const isVideoFile = (url: string) => {
+    const videoExtensions = ['.mp4', '.mov', '.avi', '.wmv'];
+    return videoExtensions.some(ext => url.toLowerCase().endsWith(ext));
+};
 
 export default function DetailPage(props: PageProps) {
     const { products, categories, info } = props;
@@ -122,19 +134,39 @@ export default function DetailPage(props: PageProps) {
                         <div className='col-span-6 relative h-[400px] z-10'>
                             <div className={`absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                                <img
-                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[0]}` : `${APP_URL}/storage/placeholder.png`}
-                                    alt={products.nama || 'Product'}
-                                    className={`rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
-                                />
+                                {isVideoFile(products.image[0]) ? (
+                                    <video
+                                        src={`${APP_URL}/storage/${products.image[0]}`}
+                                        className="rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] object-cover"
+                                        controls
+                                        playsInline
+                                        muted
+                                    />
+                                ) : (
+                                    <img
+                                        src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[0]}` : `${APP_URL}/storage/placeholder.png`}
+                                        alt={products.nama || 'Product'}
+                                        className={`rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
+                                    />
+                                )}
                             </div>
                             <div className={`flex justify-center absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                                <img
-                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
-                                    alt={products.nama || 'Product'}
-                                    className={`absolute rounded-md w-full h-full ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
-                                />
+                                {isVideoFile(products.image[carouselIndex]) ? (
+                                    <video
+                                        src={`${APP_URL}/storage/${products.image[carouselIndex]}`}
+                                        className="absolute rounded-md w-full h-full object-cover"
+                                        controls
+                                        playsInline
+                                        muted
+                                    />
+                                ) : (
+                                    <img
+                                        src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
+                                        alt={products.nama || 'Product'}
+                                        className={`absolute rounded-md w-full h-full ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
+                                    />
+                                )}
                                 {products.image && products.image.length > 1 && (
                                     <>
                                         <button
@@ -160,11 +192,21 @@ export default function DetailPage(props: PageProps) {
                             <div className={`grid grid-cols-6 grid-rows-2 p-0 m-0 justify-center gap-3 h-[400px] absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                                 <div className='col-span-5 justify-center'>
-                                    <img
-                                        src={products.image && products.image.length > 1 ? `${APP_URL}/storage/${products.image[1]}` : `${APP_URL}/storage/placeholder.png`}
-                                        alt="thumb-1"
-                                        className={`w-full h-full rounded-md ${products.image && products.image.length > 1 ? 'object-cover' : "object-contain"}`}
-                                    />
+                                    {isVideoFile(products.image[1]) ? (
+                                        <video
+                                            src={`${APP_URL}/storage/${products.image[1]}`}
+                                            className="w-full h-full rounded-md object-cover"
+                                            controls
+                                            playsInline
+                                            muted
+                                        />
+                                    ) : (
+                                        <img
+                                            src={products.image && products.image.length > 1 ? `${APP_URL}/storage/${products.image[1]}` : `${APP_URL}/storage/placeholder.png`}
+                                            alt="thumb-1"
+                                            className={`w-full h-full rounded-md ${products.image && products.image.length > 1 ? 'object-cover' : "object-contain"}`}
+                                        />
+                                    )}
                                 </div>
                                 <div className={`row-span-2 flex content-center justify-center transition-all duration-500 ease-in-out ${showDetail ? 'opacity-0 -translate-x-full pointer-events-none' : 'opacity-100 translate-x-0'}`}>
                                     <button className='flex place-items-center place-self-center bg-[#F6C44B] text-black justify-center w-[48px] h-[48px] rounded-full text-[24px] cursor-pointer'
@@ -176,11 +218,21 @@ export default function DetailPage(props: PageProps) {
                                 </div>
                                 <div className='col-span-5 justify-center'>
                                     <div className='relative w-full h-full'>
-                                        <img
-                                            src={products.image && products.image.length > 2 ? `${APP_URL}/storage/${products.image[2]}` : `${APP_URL}/storage/placeholder.png`}
-                                            alt="thumb-2"
-                                            className={`w-full h-full rounded-md brightness-75 ${products.image && products.image.length > 2 ? 'object-cover' : "object-contain"}`}
-                                        />
+                                        {isVideoFile(products.image[2]) ? (
+                                            <video
+                                                src={`${APP_URL}/storage/${products.image[2]}`}
+                                                className="w-full h-full rounded-md brightness-75 object-cover"
+                                                controls
+                                                playsInline
+                                                muted
+                                            />
+                                        ) : (
+                                            <img
+                                                src={products.image && products.image.length > 2 ? `${APP_URL}/storage/${products.image[2]}` : `${APP_URL}/storage/placeholder.png`}
+                                                alt="thumb-2"
+                                                className={`w-full h-full rounded-md brightness-75 ${products.image && products.image.length > 2 ? 'object-cover' : "object-contain"}`}
+                                            />
+                                        )}
                                         <div className='absolute top-0 left-0 w-full h-full flex place-items-center justify-center font-[700] text-[24px] rounded-md cursor-pointer'
                                             onClick={() => setShowGallery(true)}
                                         >
@@ -225,9 +277,12 @@ export default function DetailPage(props: PageProps) {
                                     <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
                                         Rp {products.price.toLocaleString('id-ID')}
                                     </div>
+                                    <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '8px 0 16px 0' }}>
+                                        $ {products.priceUsd.toLocaleString('id-ID')}
+                                    </div>
                                     <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
                                         <div><b>No / Date</b> : {products.number} / {formattedDate}</div>
-                                        <div><b>Weight</b> : {products.weight}</div>
+                                        <div><b>Weight</b> : {products.weight} Gram</div>
                                         <div><b>Dim (Mm)</b> : {products.diameter}</div>
                                         <div><b>Cut</b> : {products.cut}</div>
                                         <div><b>Shape</b> : {products.shape}</div>
@@ -243,11 +298,21 @@ export default function DetailPage(props: PageProps) {
 
                 <div className='md:hidden block flex flex-col gap-3'>
                     <div className='relative flex h-[400px]'>
-                        <img
-                            src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
-                            alt={products.nama || 'Product'}
-                            className={`absolute rounded-md w-full h-full ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
-                        />
+                        {isVideoFile(products.image[carouselIndex]) ? (
+                            <video
+                                src={`${APP_URL}/storage/${products.image[carouselIndex]}`}
+                                className="absolute rounded-md w-full h-full object-cover"
+                                controls
+                                playsInline
+                                muted
+                            />
+                        ) : (
+                            <img
+                                src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
+                                alt={products.nama || 'Product'}
+                                className={`absolute rounded-md w-full h-full ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
+                            />
+                        )}
                         {products.image && products.image.length > 1 && (
                             <>
                                 <button
@@ -289,9 +354,12 @@ export default function DetailPage(props: PageProps) {
                         <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
                             Rp {products.price.toLocaleString('id-ID')}
                         </div>
+                        <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '8px 0 16px 0' }}>
+                            $ {products.priceUsd.toLocaleString('id-ID')}
+                        </div>
                         <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
-                            <div><b>No / Date</b> : {products.number} / {products.date}</div>
-                            <div><b>Weight</b> : {products.weight}</div>
+                            <div><b>No / Date</b> : {products.number} / {formattedDate}</div>
+                            <div><b>Weight</b> : {products.weight} Gram</div>
                             <div><b>Dim (Mm)</b> : {products.diameter}</div>
                             <div><b>Cut</b> : {products.cut}</div>
                             <div><b>Shape</b> : {products.shape}</div>
@@ -358,7 +426,7 @@ export default function DetailPage(props: PageProps) {
                         </button> */}
                         <a
                             href={`https://wa.me/${info?.phone_number?.replace(/\D/g, '')}?text=${encodeURIComponent(
-                                `Hi, I’d like to ask more about: ${products.nama}`
+                                `Hi, I'd like to ask more about: ${products.nama}`
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -450,11 +518,21 @@ export default function DetailPage(props: PageProps) {
                             )}
                         </div> */}
                         <div className='relative flex h-[90%] w-[90%]'>
-                            <img
-                                src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
-                                alt={products.nama || 'Product'}
-                                className={`absolute rounded-md w-full h-full object-contain`}
-                            />
+                            {isVideoFile(products.image[carouselIndex]) ? (
+                                <video
+                                    src={`${APP_URL}/storage/${products.image[carouselIndex]}`}
+                                    className="absolute rounded-md w-full h-full object-contain"
+                                    controls
+                                    playsInline
+                                    muted
+                                />
+                            ) : (
+                                <img
+                                    src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[carouselIndex]}` : `${APP_URL}/storage/placeholder.png`}
+                                    alt={products.nama || 'Product'}
+                                    className="absolute rounded-md w-full h-full object-contain"
+                                />
+                            )}
                             {products.image && products.image.length > 1 && (
                                 <>
                                     <button

@@ -38,6 +38,9 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->integer(),
+                Forms\Components\TextInput::make('priceUsd')
+                    ->required()
+                    ->integer(),
                 Forms\Components\Select::make('category')
                     ->multiple()
                     ->relationship('categories', 'name')
@@ -79,20 +82,25 @@ class ProductResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->multiple()
                     ->image()
-                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png', 'image/gif'])
+                    ->acceptedFileTypes([
+                        'image/jpeg', 
+                        'image/jpg', 
+                        'image/png', 
+                        'image/gif',
+                        'video/mp4',
+                        'video/quicktime',
+                        'video/x-msvideo',
+                        'video/x-ms-wmv'
+                    ])
                     ->imageResizeMode('contain')
                     ->disk('public')
                     ->visibility('public')
                     ->directory('products')
-                    ->maxSize(5120)
+                    ->maxSize(512000)
                     ->maxFiles(10)
-                    // ->deleteUploadedFileUsing(function ($file) {
-                    //     if (Storage::disk('public')->exists($file)) {
-                    //         Storage::disk('public')->delete($file);
-                    //         return true;
-                    //     }
-                    //     return false;
-                    // })
+                    ->previewable()
+                    ->downloadable()
+                    ->openable()
                     ->columnSpanFull(),
             ]);
     }

@@ -8,6 +8,7 @@ interface AkikCardProps {
   title: string;
   subtitle?: string;
   price: number;
+  priceUsd: number;
   stock?: number;
   negotiable?: boolean;
   isLimited?: boolean;
@@ -22,6 +23,7 @@ export default function AkikCard({
   title,
   subtitle,
   price,
+  priceUsd,
   stock,
   negotiable = false,
   isLimited = false,
@@ -54,6 +56,7 @@ export default function AkikCard({
         <div>
           {negotiable && <div className="text-xs md:text-sm text-black font-bold">Negotiable</div>}
           <div className="text-base md:text-lg font-bold text-red-600">Rp. {price.toLocaleString()}</div>
+          {priceUsd && <div className="text-sm md:text-base font-bold text-red-600">$ {priceUsd.toLocaleString()}</div>}
         </div>
       </div>
     </div>

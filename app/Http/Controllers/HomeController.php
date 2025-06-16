@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\AdditionalInformation;
 use App\Models\Category;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -38,10 +39,14 @@ class HomeController extends Controller
         $products = $query->latest()->paginate(12)->withQueryString();
         $info = AdditionalInformation::first();
         $categories = Category::all();
+        $carousel = Carousel::all();
+        // dd($categories);
+        
         return Inertia::render('home', [
             'products' => $products,
             'info' => $info,
             'categories' => $categories,
+            'carousel' => $carousel,
         ]);
     }
 }

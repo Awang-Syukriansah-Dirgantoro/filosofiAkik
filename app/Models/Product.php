@@ -17,6 +17,7 @@ class Product extends Model
         'stock',
         'view',
         'price',
+        'priceUsd',
         'limited',
         'negoable',
         'number',

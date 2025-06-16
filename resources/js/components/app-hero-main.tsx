@@ -4,21 +4,13 @@ import { router } from '@inertiajs/react';
 
 const categories = ['Jewellery', 'Collectibles', 'Art Gallery'];
 
-// Sample product images - replace these with your actual image paths
-const productImages = [
-    '/storage/contoh-1.jpeg',
-    '/storage/contoh-2.jpg',
-    '/storage/contoh-3.jpg',
-    '/storage/contoh-4.jpg',
-    '/storage/contoh-5.jpg',
-    '/storage/contoh-6.jpg',
-    '/storage/contoh-7.jpg',
-    '/storage/contoh-8.jpg',
-    '/storage/contoh-9.jpg',
-];
+interface CarouselItem {
+    id: number;
+    path: string;
+}
 
 interface PageProps {
-    info:{
+    info: {
         tag_line?: string;
         sub_tag_line?: string;
         address?: string;
@@ -28,24 +20,34 @@ interface PageProps {
         tiktok?: string;
         twitter?: string;
     };
+    carousel?: CarouselItem[];
 }
+
+const APP_URL = window.APP_URL || "127.0.0.1:8000";
+
+const isVideoFile = (url: string) => {
+    const videoExtensions = ['.mp4', '.mov', '.avi', '.wmv'];
+    return videoExtensions.some(ext => url.toLowerCase().endsWith(ext));
+};
 
 export default function AppHeroMain(props: PageProps) {
   const [search, setSearch] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const { info } = props;
+  const { info, carousel = [] } = props;
 
+  console.log(info);
+  
   useEffect(() => {
     // Auto-rotate images every 5 seconds
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
-        prevIndex === productImages.length - 1 ? 0 : prevIndex + 1
+        prevIndex === (carousel.length - 1) ? 0 : prevIndex + 1
       );
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [carousel.length]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,21 +93,31 @@ export default function AppHeroMain(props: PageProps) {
         <div 
           className="w-full h-full transition-transform duration-700 ease-in-out flex"
           style={{
-            transform: `translateX(-${(currentImageIndex * 100) / productImages.length}%)`,
-            width: `${productImages.length * 100}%`
+            transform: `translateX(-${(currentImageIndex * 100) / carousel.length}%)`,
+            width: `${carousel.length * 100}%`
           }}
         >
-          {productImages.map((image, index) => (
+          {carousel.map((item) => (
             <div 
-              key={index}
+              key={item.id}
               className="w-full h-full flex-shrink-0 relative"
-              style={{ width: `${100 / productImages.length}%` }}
+              style={{ width: `${100 / carousel.length}%` }}
             >
-              <img
-                src={image}
-                alt={`Product ${index + 1}`}
-                className="w-full h-full object-cover bg-gray-100"
-              />
+              {isVideoFile(item.path) ? (
+                <video
+                  src={`${APP_URL}/storage/${item.path}`}
+                  className="w-full h-full object-cover bg-gray-100"
+                  controls
+                  playsInline
+                  muted
+                />
+              ) : (
+                <img
+                  src={`${APP_URL}/storage/${item.path}`}
+                  alt={`Carousel ${item.id}`}
+                  className="w-full h-full object-cover bg-gray-100"
+                />
+              )}
             </div>
           ))}
         </div>
