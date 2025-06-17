@@ -296,7 +296,7 @@ export default function DetailPage(props: PageProps) {
                                         Rp {products.price.toLocaleString('id-ID')}
                                     </div>
                                     <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '1px 0 10px 0' }}>
-                                        {(products.priceUsd && products.priceUsd != 0) && `$ ${products.priceUsd.toLocaleString('id-ID')}`}
+                                        {((products.priceUsd != 0) && products.priceUsd) && `$ ${products.priceUsd.toLocaleString('id-ID')}`}
                                     </div>
                                     <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
                                         <div><b>No / Date</b> : {products.number} / {formattedDate}</div>
@@ -373,7 +373,7 @@ export default function DetailPage(props: PageProps) {
                             Rp {products.price.toLocaleString('id-ID')}
                         </div>
                         <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '8px 0 16px 0' }}>
-                            {(products.priceUsd && products.priceUsd != 0) && `$ ${products.priceUsd.toLocaleString('id-ID')}`}
+                            {((products.priceUsd != 0) && products.priceUsd) && `$ ${products.priceUsd.toLocaleString('id-ID')}`}
                         </div>
                         <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
                             <div><b>No / Date</b> : {products.number} / {formattedDate}</div>
