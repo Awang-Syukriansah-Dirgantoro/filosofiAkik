@@ -134,7 +134,7 @@ export default function DetailPage(props: PageProps) {
                         <div className='col-span-6 relative h-[400px] z-10'>
                             <div className={`absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                                {isVideoFile(products.image[0]) ? (
+                                {products.image.length > 0 ? (isVideoFile(products.image[0]) ? (
                                     <video
                                         src={`${APP_URL}/storage/${products.image[0]}`}
                                         className="rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] object-cover"
@@ -145,6 +145,12 @@ export default function DetailPage(props: PageProps) {
                                 ) : (
                                     <img
                                         src={products.image && products.image.length > 0 ? `${APP_URL}/storage/${products.image[0]}` : `${APP_URL}/storage/placeholder.png`}
+                                        alt={products.nama || 'Product'}
+                                        className={`rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
+                                    />
+                                )):(
+                                    <img
+                                        src={`${APP_URL}/storage/placeholder.png`}
                                         alt={products.nama || 'Product'}
                                         className={`rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
                                     />
@@ -192,7 +198,7 @@ export default function DetailPage(props: PageProps) {
                             <div className={`grid grid-cols-6 grid-rows-2 p-0 m-0 justify-center gap-3 h-[400px] absolute inset-0 transition-all duration-500 ease-in-out 
                                 ${showDetail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                                 <div className='col-span-5 justify-center'>
-                                    {isVideoFile(products.image[1]) ? (
+                                    {products.image.length > 1 ? (isVideoFile(products.image[1]) ? (
                                         <video
                                             src={`${APP_URL}/storage/${products.image[1]}`}
                                             className="w-full h-full rounded-md object-cover"
@@ -206,6 +212,12 @@ export default function DetailPage(props: PageProps) {
                                             alt="thumb-1"
                                             className={`w-full h-full rounded-md ${products.image && products.image.length > 1 ? 'object-cover' : "object-contain"}`}
                                         />
+                                    )):(
+                                        <img
+                                            src={`${APP_URL}/storage/placeholder.png`}
+                                            alt={products.nama || 'Product'}
+                                            className={`rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
+                                        />
                                     )}
                                 </div>
                                 <div className={`row-span-2 flex content-center justify-center transition-all duration-500 ease-in-out ${showDetail ? 'opacity-0 -translate-x-full pointer-events-none' : 'opacity-100 translate-x-0'}`}>
@@ -218,7 +230,7 @@ export default function DetailPage(props: PageProps) {
                                 </div>
                                 <div className='col-span-5 justify-center'>
                                     <div className='relative w-full h-full'>
-                                        {isVideoFile(products.image[2]) ? (
+                                        {products.image.length > 2 ? (isVideoFile(products.image[2]) ? (
                                             <video
                                                 src={`${APP_URL}/storage/${products.image[2]}`}
                                                 className="w-full h-full rounded-md brightness-75 object-cover"
@@ -231,6 +243,12 @@ export default function DetailPage(props: PageProps) {
                                                 src={products.image && products.image.length > 2 ? `${APP_URL}/storage/${products.image[2]}` : `${APP_URL}/storage/placeholder.png`}
                                                 alt="thumb-2"
                                                 className={`w-full h-full rounded-md brightness-75 ${products.image && products.image.length > 2 ? 'object-cover' : "object-contain"}`}
+                                            />
+                                        )):(
+                                            <img
+                                                src={`${APP_URL}/storage/placeholder.png`}
+                                                alt={products.nama || 'Product'}
+                                                className={`rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
                                             />
                                         )}
                                         <div className='absolute top-0 left-0 w-full h-full flex place-items-center justify-center font-[700] text-[24px] rounded-md cursor-pointer'
