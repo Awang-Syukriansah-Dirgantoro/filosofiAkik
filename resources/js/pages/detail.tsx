@@ -63,7 +63,7 @@ declare global {
     }
 }
 
-const APP_URL = window.APP_URL || "127.0.0.1:8000";
+const APP_URL = typeof window !== 'undefined' ? (window.APP_URL || "127.0.0.1:8000") : "127.0.0.1:8000";
 
 const isVideoFile = (url: string) => {
     const videoExtensions = ['.mp4', '.mov', '.avi', '.wmv'];
@@ -257,7 +257,7 @@ export default function DetailPage(props: PageProps) {
                                 </div>
                                 <div className='relative col-span-5'>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                                        {products.categories.map((tag) => (
+                                        {products.categories && products.categories.length > 0 && products.categories.map((tag) => (
                                             <span
                                                 key={tag.name}
                                                 style={{
@@ -278,7 +278,7 @@ export default function DetailPage(props: PageProps) {
                                         Rp {products.price.toLocaleString('id-ID')}
                                     </div>
                                     <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '1px 0 10px 0' }}>
-                                        $ {products.priceUsd.toLocaleString('id-ID')}
+                                        {products.priceUsd && `$ ${products.priceUsd.toLocaleString('id-ID')}`}
                                     </div>
                                     <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
                                         <div><b>No / Date</b> : {products.number} / {formattedDate}</div>
@@ -334,7 +334,7 @@ export default function DetailPage(props: PageProps) {
                     </div>
                     <div className='relative'>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                            {products.categories.map((tag) => (
+                            {products.categories && products.categories.length > 0 && products.categories.map((tag) => (
                                 <span
                                     key={tag.name}
                                     style={{
@@ -355,7 +355,7 @@ export default function DetailPage(props: PageProps) {
                             Rp {products.price.toLocaleString('id-ID')}
                         </div>
                         <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '8px 0 16px 0' }}>
-                            $ {products.priceUsd.toLocaleString('id-ID')}
+                            {products.priceUsd && `$ ${products.priceUsd.toLocaleString('id-ID')}`}
                         </div>
                         <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
                             <div><b>No / Date</b> : {products.number} / {formattedDate}</div>
