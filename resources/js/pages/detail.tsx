@@ -274,10 +274,10 @@ export default function DetailPage(props: PageProps) {
                                         ))}
                                     </div>
                                     <h1 className="font-['Outfit']" style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
-                                    <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
+                                    <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '3px 0 1px 0' }}>
                                         Rp {products.price.toLocaleString('id-ID')}
                                     </div>
-                                    <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '8px 0 16px 0' }}>
+                                    <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '1px 0 10px 0' }}>
                                         $ {products.priceUsd.toLocaleString('id-ID')}
                                     </div>
                                     <div className="font-['Roboto']" style={{ fontSize: 17, marginBottom: 16, lineHeight: 1.7 }}>
