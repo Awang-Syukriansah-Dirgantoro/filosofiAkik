@@ -5,6 +5,7 @@ namespace App\Filament\Resources\CarouselResource\Pages;
 use App\Filament\Resources\CarouselResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Facades\Storage;
 
 class EditCarousel extends EditRecord
 {
@@ -21,22 +22,17 @@ class EditCarousel extends EditRecord
     protected function beforeSave(): void
     {
         // Get original image data
-        $originalImages = $this->record->getOriginal('path') ?? [];
+        $originalImage = $this->record->getOriginal('path');
         
         // Get new image data
-        $newImages = $this->data['path'] ?? [];
+        $newImage = $this->data['path'] ?? null;
         
-        // Find images that were removed
-        $removedImages = array_diff($originalImages, $newImages);
-        
-        // Delete removed images from storage
-        foreach ($removedImages as $image) {
-            if (Storage::disk('public')->exists($image)) {
-                Storage::disk('public')->delete($image);
+        // Delete old image if it's different from new image
+        if ($originalImage && $originalImage !== $newImage) {
+            if (Storage::disk('public')->exists($originalImage)) {
+                Storage::disk('public')->delete($originalImage);
             }
         }
-        
-        // return redirect()->back()->withErrors($validator)->withInput();
     }
 
     protected function getRedirectUrl(): ?string
