@@ -148,7 +148,7 @@ export default function DetailPage(props: PageProps) {
                                         alt={products.nama || 'Product'}
                                         className={`rounded-md row-start-1 w-full h-full shadow-[0_2px_16px_rgba(0,0,0,0.2)] ${products.image && products.image.length > 0 ? 'object-cover' : "object-contain"}`}
                                     />
-                                )):(
+                                )) : (
                                     <img
                                         src={`${APP_URL}/storage/placeholder.png`}
                                         alt={products.nama || 'Product'}
@@ -212,7 +212,7 @@ export default function DetailPage(props: PageProps) {
                                             alt="thumb-1"
                                             className={`w-full h-full rounded-md ${products.image && products.image.length > 1 ? 'object-cover' : "object-contain"}`}
                                         />
-                                    )):(
+                                    )) : (
                                         <img
                                             src={`${APP_URL}/storage/placeholder.png`}
                                             alt={products.nama || 'Product'}
@@ -244,7 +244,7 @@ export default function DetailPage(props: PageProps) {
                                                 alt="thumb-2"
                                                 className={`w-full h-full rounded-md brightness-75 ${products.image && products.image.length > 2 ? 'object-cover' : "object-contain"}`}
                                             />
-                                        )):(
+                                        )) : (
                                             <img
                                                 src={`${APP_URL}/storage/placeholder.png`}
                                                 alt={products.nama || 'Product'}
@@ -293,7 +293,7 @@ export default function DetailPage(props: PageProps) {
                                     </div>
                                     <h1 className="font-['Outfit']" style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
                                     <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '3px 0 1px 0' }}>
-                                        Rp {products.price.toLocaleString('id-ID')}
+                                        {((products.price != 0) && products.price) && `Rp ${products.price.toLocaleString('id-ID')}`}
                                     </div>
                                     <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '1px 0 10px 0' }}>
                                         {((products.priceUsd != 0) && products.priceUsd) && `$ ${products.priceUsd.toLocaleString('id-ID')}`}
@@ -370,7 +370,7 @@ export default function DetailPage(props: PageProps) {
                         </div>
                         <h1 className="font-['Outfit']" style={{ margin: 0, fontSize: 32, fontWeight: 800 }}>{products.nama}</h1>
                         <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 32, fontWeight: 800, margin: '8px 0 16px 0' }}>
-                            Rp {products.price.toLocaleString('id-ID')}
+                            {((products.price != 0) && products.price) && `Rp ${products.price.toLocaleString('id-ID')}`}
                         </div>
                         <div className="font-['Outfit']" style={{ color: '#FFA726', fontSize: 28, fontWeight: 800, margin: '8px 0 16px 0' }}>
                             {((products.priceUsd != 0) && products.priceUsd) && `$ ${products.priceUsd.toLocaleString('id-ID')}`}
